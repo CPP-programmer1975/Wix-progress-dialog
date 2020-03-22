@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Ikona pro aplikaci na desktop -->
+  <Icon Id="Desktop.ico" SourceFile="$(var.ApplicationCommonFiles)\Desktop.ico" />
+  <Property Id="ARPPRODUCTICON" Value="Desktop.ico" />
+
+  <!-- Ikona adresare pro instalator -->
+  <Binary Id="BinaryFolderIcon" SourceFile="$(var.InstallerIcons)\FolderDestIcon.ico" />
+
+  <!-- Ikony typu setupu pro instalator -->
+  <Binary Id="BinaryCompleteSetupIcon" SourceFile="$(var.InstallerIcons)\CompleteSetupIcon.ico" />
+  <Binary Id="BinaryCustomSetupIcon" SourceFile="$(var.InstallerIcons)\CustomSetupIcon.ico" />
+
+  <!-- Ikony pro Browse dialog instalatoru -->
+  <Binary Id="BinaryFolderUpIcon" SourceFile="$(var.InstallerIcons)\FolderUpIcon.ico" />
+  <Binary Id="BinaryFolderNewIcon" SourceFile="$(var.InstallerIcons)\FolderNewIcon.ico" />
+
+</Include>

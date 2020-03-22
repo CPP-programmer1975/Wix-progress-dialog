@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Struktura komponent - komponenta predstavuje jeden soubor instalace -->
+  <ComponentGroup Id="ProductComponents" Directory="APPBINFOLDER">
+
+    <Component Id="MainExecutable">
+      <File Id="MainExecutable" Name="$(var.ApplicationName)$(var.BitSuffix).exe" Source="$(var.ApplicationBinaryFiles)\$(var.MainExecutableName)" KeyPath="yes" Checksum="yes"/>
+    </Component>
+
+  </ComponentGroup>
+
+</Include>

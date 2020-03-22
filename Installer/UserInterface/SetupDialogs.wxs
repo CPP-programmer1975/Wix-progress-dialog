@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+First-time install dialog sequence:
+- Pcp_WelcomeDialog
+- Pcp_LicenseAgreementDialog
+- Pcp_InstallDirDialog
+- Pcp_SetupTypeDialog
+- Pcp_CustomizeDialog
+- Pcp_VerifyReadyDialog
+- Pcp_ExitDialog
+
+Maintenance dialog sequence:
+- Pcp_MaintenanceWelcomeDialog
+- Pcp_MaintenanceTypeDialog
+- Pcp_CustomizeDialog
+- Pcp_VerifyReadyDialog
+- Pcp_ExitDialog
+
+Patch dialog sequence:
+- Pcp_WelcomeDialog
+- Pcp_VerifyReadyDialog
+- Pcp_ExitDialog
+-->
+
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI Id="Pcp_SetupUserInterface">
+      <!-- Definice stylu textu -->
+      <TextStyle Id="WixUI_Font_Normal" FaceName="Tahoma" Size="8" />
+      <TextStyle Id="WixUI_Font_Bigger" FaceName="Tahoma" Size="12" />
+      <TextStyle Id="WixUI_Font_Title" FaceName="Tahoma" Size="9" Bold="yes" />
+      <!--TextStyle Id="Arial8" FaceName="Arial" Size="8" />
+      <TextStyle Id="Arial9" FaceName="Arial" Size="9" />
+      <TextStyle Id="ArialBlue10" FaceName="Arial" Size="10" Red="0" Green="0" Blue="255" />
+      <TextStyle Id="ArialBlueStrike10" FaceName="Arial" Size="10" Red="0" Green="0" Blue="255" Strike="yes" />
+      <TextStyle Id="CourierNew8" FaceName="Courier New" Size="8" />
+      <TextStyle Id="CourierNew9" FaceName="Courier New" Size="9" />
+      <TextStyle Id="MSGothic9" FaceName="MS Gothic" Size="9" />
+      <TextStyle Id="MSSGreySerif8" FaceName="MS Sans Serif" Size="8" Red="128" Green="128" Blue="128" />
+      <TextStyle Id="MSSWhiteSerif8" FaceName="Tahoma" Size="8" Red="255" Green="255" Blue="255" /-->
+      <TextStyle Id="MSSansBold8" FaceName="Tahoma" Size="8" Bold="yes" />
+      <!--TextStyle Id="MSSansSerif8" FaceName="MS Sans Serif" Size="8" />
+      <TextStyle Id="MSSansSerif9" FaceName="MS Sans Serif" Size="9" />
+      <TextStyle Id="Tahoma10" FaceName="Tahoma" Size="10" />
+      <TextStyle Id="Tahoma9" FaceName="Tahoma" Size="9" /-->
+      <TextStyle Id="TahomaBold10" FaceName="Tahoma" Size="10" Bold="yes" />
+      <!--TextStyle Id="TahomaBold8" FaceName="Tahoma" Size="8" Bold="yes" />
+      <TextStyle Id="Times8" FaceName="Times New Roman" Size="8" />
+      <TextStyle Id="Times9" FaceName="Times New Roman" Size="9" />
+      <TextStyle Id="TimesItalic12" FaceName="Times New Roman" Size="12" Italic="yes" />
+      <TextStyle Id="TimesItalicBlue10" FaceName="Times New Roman" Size="10" Red="0" Green="0" Blue="255" Italic="yes" />
+      <TextStyle Id="TimesRed16" FaceName="Times New Roman" Size="16" Red="255" Green="0" Blue="0" /-->
+
+      <Property Id="DefaultUIFont" Value="WixUI_Font_Normal" />
+
+      <!-- Radiobuttony Accept license-->
+      <RadioButtonGroup Property="AgreeToLicense">
+        <RadioButton Height="15" Text="!(loc.Pcp_LicenseAgreementDlgRadioButtonAgreeNoText)" Value="no" Width="291" X="0" Y="15" />
+        <RadioButton Height="15" Text="!(loc.Pcp_LicenseAgreementDlgRadioButtonAgreeYesText)" Value="yes" Width="291" X="0" Y="0" />
+      </RadioButtonGroup>
+      <!-- Radiobuttony typ instalace -->
+      <RadioButtonGroup Property="WixUI_InstallMode">
+        <RadioButton Height="15" Text="!(loc.Pcp_SetupTypeDlgRadioButtonCompleteText)" Value="Complete" Width="264" X="0" Y="0" />
+        <RadioButton Height="15" Text="!(loc.Pcp_SetupTypeDlgRadioButtonCustomText)" Value="Custom" Width="264" X="0" Y="60" />
+      </RadioButtonGroup>
+
+      <DialogRef Id="ErrorDlg" />
+      <DialogRef Id="FatalError" />
+      <DialogRef Id="FilesInUse" />
+      <DialogRef Id="MsiRMFilesInUse" />
+      <DialogRef Id="PrepareDlg" />
+
+      <Publish Dialog="Pcp_WelcomeDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_WelcomeDialog" Control="Next" Event="NewDialog" Value="Pcp_LicenseAgreementDialog">NOT Installed AND NOT PATCH</Publish>
+      <Publish Dialog="Pcp_WelcomeDialog" Control="Next" Event="NewDialog" Value="Pcp_VerifyReadyDialog">Installed AND PATCH</Publish>
+
+      <Publish Dialog="Pcp_LicenseAgreementDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_LicenseAgreementDialog" Control="Back" Event="NewDialog" Value="Pcp_WelcomeDialog">1</Publish>
+      <Publish Dialog="Pcp_LicenseAgreementDialog" Control="Next" Event="NewDialog" Value="Pcp_InstallDirDialog" Order="2">AgreeToLicense = "yes"</Publish>
+
+      <!-- <Publish Dialog="Pcp_InstallDirDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish> 
+      Publish Dialog="Pcp_InstallDirDialog" Control="Back" Event="NewDialog" Value="Pcp_LicenseAgreementDialog">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Next" Event="DoAction" Value="CheckDestinationFolders">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Next" Event="Pcp_SetupTypeDialog" Value="SetupType">DESTINATION_FOLDERS_CORRECT</Publish -->
+
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Back" Event="NewDialog" Value="Pcp_LicenseAgreementDialog">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Next" Event="SetTargetPath" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Next" Event="DoAction" Value="WixUIValidatePath" Order="2">NOT WIXUI_DONTVALIDATEPATH</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Next" Event="SpawnDialog" Value="InvalidDirDlg" Order="3"><![CDATA[NOT WIXUI_DONTVALIDATEPATH AND WIXUI_INSTALLDIR_VALID<>"1"]]></Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="Next" Event="NewDialog" Value="Pcp_SetupTypeDialog" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="ChangeFolderApp" Property="_BrowseProperty" Value="[WIXUI_INSTALLDIR]" Order="1">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="ChangeFolderApp" Event="SpawnDialog" Value="Pcp_BrowseDialog" Order="2">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="ChangeFolderUser" Property="_BrowseProperty" Value="[WIXUI_USERDATADIR]" Order="1">1</Publish>
+      <Publish Dialog="Pcp_InstallDirDialog" Control="ChangeFolderUser" Event="SpawnDialog" Value="Pcp_BrowseDialog" Order="2">1</Publish>
+
+      <Publish Dialog="Pcp_SetupTypeDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_SetupTypeDialog" Control="Back" Event="NewDialog" Value="Pcp_InstallDirDialog">1</Publish>
+      <Publish Dialog="Pcp_SetupTypeDialog" Control="Next" Event="NewDialog" Value="Pcp_VerifyReadyDialog">WixUI_InstallMode &lt;&gt; "Custom"</Publish>
+      <Publish Dialog="Pcp_SetupTypeDialog" Control="Next" Event="NewDialog" Value="Pcp_CustomizeDialog">WixUI_InstallMode = "Custom"</Publish>
+
+      <Publish Dialog="Pcp_CustomizeDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_CustomizeDialog" Control="Back" Event="NewDialog" Value="Pcp_MaintenanceTypeDialog" Order="1">WixUI_InstallMode = "Change"</Publish>
+      <Publish Dialog="Pcp_CustomizeDialog" Control="Back" Event="NewDialog" Value="Pcp_SetupTypeDialog" Order="2">WixUI_InstallMode = "Custom"</Publish>
+      <Publish Dialog="Pcp_CustomizeDialog" Control="Next" Event="NewDialog" Value="OutOfDiskDlg">OutOfNoRbDiskSpace = 1</Publish>
+      <Publish Dialog="Pcp_CustomizeDialog" Control="Next" Event="NewDialog" Value="Pcp_VerifyReadyDialog">OutOfNoRbDiskSpace &lt;&gt; 1</Publish>
+
+      <Publish Dialog="Pcp_VerifyReadyDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_VerifyReadyDialog" Control="Back" Event="NewDialog" Value="Pcp_CustomizeDialog" Order="1">WixUI_InstallMode = "Custom"</Publish>
+      <Publish Dialog="Pcp_VerifyReadyDialog" Control="Back" Event="NewDialog" Value="Pcp_SetupTypeDialog" Order="2">WixUI_InstallMode = "Complete"</Publish>
+      <Publish Dialog="Pcp_VerifyReadyDialog" Control="Back" Event="NewDialog" Value="Pcp_CustomizeDialog" Order="3">WixUI_InstallMode = "Change"</Publish>
+      <Publish Dialog="Pcp_VerifyReadyDialog" Control="Back" Event="NewDialog" Value="Pcp_MaintenanceTypeDialog" Order="4">WixUI_InstallMode = "Repair" OR WixUI_InstallMode = "Remove"</Publish>
+      <Publish Dialog="Pcp_VerifyReadyDialog" Control="Back" Event="NewDialog" Value="Pcp_WelcomeDialog" Order="2">WixUI_InstallMode = "Update"</Publish>
+
+      <Publish Dialog="Pcp_MaintenanceWelcomeDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_MaintenanceWelcomeDialog" Control="Next" Event="NewDialog" Value="Pcp_MaintenanceTypeDialog">1</Publish>
+
+      <Publish Dialog="Pcp_MaintenanceTypeDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+      <Publish Dialog="Pcp_MaintenanceTypeDialog" Control="Back" Event="NewDialog" Value="Pcp_MaintenanceWelcomeDialog">1</Publish>
+      <Publish Dialog="Pcp_MaintenanceTypeDialog" Control="ChangeButton" Event="NewDialog" Value="Pcp_CustomizeDialog">1</Publish>
+      <Publish Dialog="Pcp_MaintenanceTypeDialog" Control="RepairButton" Event="NewDialog" Value="Pcp_VerifyReadyDialog">1</Publish>
+      <Publish Dialog="Pcp_MaintenanceTypeDialog" Control="RemoveButton" Event="NewDialog" Value="Pcp_VerifyReadyDialog">1</Publish>
+
+      <Publish Dialog="Pcp_ProgressDialog" Control="Cancel" Event="SpawnDialog" Value="CancelDlg">1</Publish>
+
+      <!-- Trigger pro custom action "Spustit aplikaci po dokonceni instalace" -->
+      <!-- Publish Dialog="Pcp_ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed</Publish -->
+      <Publish Dialog="Pcp_ExitDialog" Control="Finish" Event="EndDialog" Value="Return" Order="999">1</Publish>
+    </UI>
+
+    <!-- Definice sekvence dialogu -->
+    <InstallUISequence>
+      <Show Dialog="Pcp_UserExitDialog" OnExit="cancel" />
+    </InstallUISequence>
+
+    <!-- InstallExecuteSequence>
+      <Custom Action='LaunchApplication' After='InstallFinalize'>NOT REMOVE</Custom>
+    </InstallExecuteSequence -->
+
+    <UIRef Id="WixUI_Common" />
+  </Fragment>
+</Wix>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Ukoncovaci dialog -->
+      <Dialog Id="Pcp_ExitDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko dokoncit -->
+        <Control Id="Finish" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonFinish)" TabSkip="no" Default="yes" Cancel="yes">
+          <Publish Event="DoAction" Value="ShowMsiLog">MsiLogFileLocation And (SHOW_MSI_LOG="1")</Publish>
+        </Control>
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no" Disabled="yes" />
+        <!-- Tlacitko zpet -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" Disabled="yes" />
+        <!-- Podkladova bitmapa -->
+        <Control Id="Bitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="354" Text="!(loc.WelcomeDlgBitmap)" TabSkip="no" Disabled="yes" />
+        <!-- Zprava o ukonceni instalatoru -->
+        <Control Id="TextLine1" Type="Text" X="279" Y="33" Width="225" Height="45" Text="!(loc.Pcp_ExitTypeDlgTitle)" TabSkip="yes" Transparent="yes" />
+        <!-- Zprava s stavu instalace -->
+        <Control Id="TextLine2" Type="Text" X="279" Y="80" Width="228" Height="45" Text="!(loc.Pcp_ExitTypeDlgReport)" TabSkip="yes" Hidden="yes" Transparent="yes" NoPrefix="yes">
+          <Condition Action="show">NOT Installed</Condition>
+        </Control>
+        <!-- Podekovani -->
+        <Control Id="TextLine3" Type="Text" X="279" Y="115" Width="228" Height="25" Text="!(loc.Pcp_ExitTypeDlgThank)" TabSkip="yes" Hidden="yes" Transparent="yes" NoPrefix="yes">
+          <Condition Action="show">NOT Installed</Condition>
+        </Control>
+        <!-- Check box "Spustit aplikaci" - kvuli chybe ve Wix -->
+        <Control Id="LaunchAppCheckBox" Type="CheckBox" X="279" Y="180" Width="10" Height="9" CheckBoxValue="1" Property="LaunchAppOnFinish" TabSkip="no" Hidden="yes">
+          <Condition Action="show">NOT Installed</Condition>
+        </Control>
+        <!-- Text k checkboxu -->
+        <Control Id="LAunchAppText" Type="Text" X="292" Y="180" Width="198" Height="10" Text="!(loc.Pcp_ExitTypeDlgLaunchApp)" TabSkip="yes" Hidden="yes" Transparent="yes">
+          <Condition Action="show">NOT Installed</Condition>
+        </Control>
+        <!-- Odkaz na web -->
+        <Control Id="TextLine4" Type="Text" X="279" Y="250" Width="228" Height="40" Text="!(loc.Pcp_ExitTypeDlgUrlInfo)" TabSkip="yes" Hidden="yes" Transparent="yes" NoPrefix="yes">
+          <Condition Action="show">NOT Installed</Condition>
+        </Control>
+        <!-- Check box Show MSI install log -->
+        <!-- Control Id="CheckShowMsiLog" Type="CheckBox" X="279" Y="295" Width="10" Height="9" CheckBoxValue="1" CheckBoxPropertyRef="SHOW_MSI_LOG" TabSkip="no" Hidden="yes">
+          <Condition Action="show">MsiLogFileLocation</Condition>
+        </Control>
+        <Control Id="ShowMsiLogText" Type="Text" X="292" Y="295" Width="198" Height="10" Text="!(loc.Pcp_ExitShowMsiInstallerLog)" TabSkip="yes" Hidden="yes" Transparent="yes">
+          <Condition Action="show">MsiLogFileLocation</Condition>
+        </Control -->
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <!-- Definice sekvence dialogu -->
+      <InstallUISequence>
+        <Show Dialog="Pcp_ExitDialog" OnExit="success" Overridable="no" />
+      </InstallUISequence>
+
+      <AdminUISequence>
+        <Show Dialog="Pcp_ExitDialog" OnExit="success" Overridable="no" />
+      </AdminUISequence>
+    </UI>
+  </Fragment>
+</Wix>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Informace o platforme -->
+  <?if "$(var.Platform)" = "x64"?>
+    <?define Bits="64"?>
+    <?define BitSuffix="64"?>
+    <?define DefaultWin64="yes"?>
+    <?define PlatformBits="64-bit"?>
+  <?else?>
+    <?define Bits="32"?>
+    <?define BitSuffix=""?>
+    <?define DefaultWin64="no"?>
+    <?define PlatformBits="32-bit"?>
+  <?endif?>
+
+  <!-- Nazev hlavniho exe -->
+  <?define MainExecutableName="$(var.ApplicationName)$(var.BitSuffix).exe"?>
+
+  <!-- Nefunguje, je nutne mit exe v referencich -->
+  <?define ExeFileVersion="!(bind.FileVersion.$(var.MainExecutableName))"?>
+
+  <!-- Docasne reseni, nez prijdu na lepsi -->
+  <?define MajorVersion="2"?>
+  <?define MinorVersion="00"?>
+  <?define BuildVersion="00"?>
+  <?define RevisionVersion="000000"?>
+
+  <!-- Cele jmeno programu -->
+  <?define ProductFullName="$(var.ManufacturerName) $(var.ApplicationName) $(var.MajorVersion).$(var.MinorVersion) $(var.PlatformBits)"?>
+  <!-- Cislo verze vcetne buildu -->
+  <?define ProductVersionBuild = "$(var.MajorVersion).$(var.MinorVersion).$(var.BuildVersion)" ?>
+  <!-- Cislo verze vcetne revize -->
+  <?define ProductVersionBuildRevision="$(var.MajorVersion).$(var.MinorVersion).$(var.BuildVersion).$(var.RevisionVersion)" ?>
+
+  <!-- Adresar se soubory ikon pro instalator -->
+  <?define InstallerIcons="$(sys.CURRENTDIR)InstallerIcons"?>
+
+  <!-- Korenovy adresar, odkud bereme zdrojove soubory -->
+  <?define ProjectDirectory="$(var.ProjectDir)..\App_Files"?>
+
+  <!-- Adresar se spolecnymi soubory -->
+  <?ifndef ApplicationCommonFiles?>
+  <?define ApplicationCommonFiles="$(var.ProjectDirectory)\Program_Common"?>
+  <?endif?>
+
+  <!-- Adresar se binarnimi soubory -->
+  <?define ApplicationBinaryFiles="$(var.ProjectDirectory)\Program_x64\Bin"?>
+
+  <!-- MS redistributables -MFC, VCRuntime, atd. -->
+  <?define MSRedistributables="$(env.CommonProgramFiles(x86))\Merge Modules"?>
+
+</Include>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Dialog pro vyber typu instalace -->
+      <Dialog Id="Pcp_SetupTypeDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko dale -->
+        <Control Id="Next" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonNext)" TabSkip="no" Default="yes" />
+        <!-- Tlacitko zpet -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" />
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no" Cancel="yes" />
+        <!-- Bitmapa - banner -->
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="67" Text="!(loc.InstallDirDlgBannerBitmap)" TabSkip="yes" Disabled="yes" />
+        <!-- Oddelovaci linka banneru -->
+        <Control Id="BannerLine" Type="Line" X="0" Y="67" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+        <!-- Texty v banneru -->
+        <Control Id="Title" Type="Text" X="20" Y="9" Width="438" Height="38" Transparent="yes" NoPrefix="yes" Text="!(loc.Pcp_SetupTypeDlgTitle)" />
+        <Control Id="Description" Type="Text" X="32" Y="34" Width="438" Height="38" Transparent="yes" NoPrefix="yes" Text="!(loc.Pcp_SetupTypeDlgDescription)" />
+        <!-- Nadpis u vyberu -->
+        <Control Id="DlgText" Type="Text" X="21" Y="76" Width="326" Height="10" Text="!(loc.Pcp_SetupTypeDlgText)" TabSkip="yes" />
+        <!-- Radiobuttony Setup type -->
+        <Control Id="SetupType" Type="RadioButtonGroup" X="21" Y="104" Width="452" Height="215" Property="WixUI_InstallMode" TabSkip="no" />
+        <!-- Text a bitmapa pro Complete setup -->
+        <Control Id="CompleteText" Type="Text" X="80" Y="119" Width="246" Height="35" Text="!(loc.Pcp_SetupTypeDlgCompleteText)" TabSkip="yes" />
+        <Control Id="CompleteIco" Type="Icon" X="34" Y="119" Width="24" Height="24" IconSize="32" FixedSize="yes" Text="BinaryCompleteSetupIcon" TabSkip="yes" Disabled="yes" />
+        <!-- Text a bitmapa pro Custom setup -->
+        <Control Id="CustomText" Type="Text" X="80" Y="179" Width="246" Height="35" Text="!(loc.Pcp_SetupTypeDlgCustomText)" TabSkip="yes" />
+        <Control Id="CustomIco" Type="Icon" X="34" Y="179" Width="24" Height="24"  IconSize="32" FixedSize="yes" Text="BinaryCustomSetupIcon" TabSkip="yes" Disabled="yes" />
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

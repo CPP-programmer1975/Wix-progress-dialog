@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Dialog s vybranymi cestami k instalaci a moznosti zmeny -->
+      <Dialog Id="Pcp_InstallDirDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko dale -->
+        <Control Id="Next" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonNext)" TabSkip="no" Default="yes">
+          <Publish Property="WixUI_InstallMode" Value="Update">Installed AND PATCH</Publish>
+        </Control>
+        <!-- Tlacitko zpet -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" />
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no"  Cancel="yes" />
+        <!-- Bitmapa - banner -->
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="67" Text="!(loc.InstallDirDlgBannerBitmap)" TabSkip="yes" Disabled="yes" />
+        <!-- Oddelovaci linka banneru -->
+        <Control Id="BannerLine" Type="Line" X="0" Y="67" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+        <!-- Texty v banneru -->
+        <Control Id="Title" Type="Text" X="20" Y="9" Width="438" Height="38" Transparent="yes" NoPrefix="yes" Text="!(loc.Pcp_InstallDirDlgTitle)" />
+        <Control Id="Description" Type="Text" X="32" Y="34" Width="438" Height="38" Transparent="yes" NoPrefix="yes" Text="!(loc.Pcp_InstallDirDlgDescription)" />
+        <!-- Cesta k instalacnimu adresari -->
+        <Control Id="GroupBoxApp" Type="GroupBox" X="10" Y="75" Width="544" Height="37" Text="!(loc.Pcp_InstallDirDlgGroupBoxApp)" TabSkip="yes" />
+        <Control Id="DestFolderApp" Type="Icon" X="18" Y="85" Width="24" Height="24" Text="BinaryFolderIcon" TabSkip="yes" Disabled="yes" IconSize="32" FixedSize="yes" />
+        <Control Id="LocationApp" Type="Text" X="51" Y="90" Width="320" Height="11" Property="_BrowseProperty" Text="[APPLICATIONFOLDER]" TabSkip="yes" />
+        <Control Id="ChangeFolderApp" Type="PushButton" X="475" Y="87" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonChange)" TabSkip="no">
+          <Publish Property="_BrowseProperty" Value="APPLICATIONFOLDER">1</Publish>
+        </Control>
+        <!-- Cesta k user data -->
+        <Control Id="GroupBoxUser" Type="GroupBox" X="10" Y="120" Width="544" Height="37" Text="!(loc.Pcp_InstallDirDlgGroupBoxUser)" TabSkip="yes" />
+        <Control Id="DestFolderUser" Type="Icon" X="18" Y="130" Width="24" Height="24" Text="BinaryFolderIcon" TabSkip="yes" Disabled="yes" IconSize="32" FixedSize="yes" />
+        <Control Id="LocationUser" Type="Text" X="51" Y="135" Width="320" Height="11" Property="_BrowseProperty" Text="[DOCSAPPLICATIONFOLDER]" TabSkip="yes" />
+        <Control Id="ChangeFolderUser" Type="PushButton" X="475" Y="132" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonChange)" TabSkip="no">
+          <Publish Property="_BrowseProperty" Value="DOCSAPPLICATIONFOLDER">1</Publish>
+        </Control>
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" InitialTargets="EnsureWixToolsetInstalled" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition="'$(Configuration)' == ''">Release $(Application)</Configuration>
+    <Application Condition="'$(Application)' == ''">$(Configuration.Split(' ')[0])</Application>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Platform)' == ''">
+    <Platform Condition="'$(Architecture)' == '32'">x86</Platform>
+    <Platform Condition="'$(Architecture)' == '64'">x64</Platform>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Architecture)' == ''">
+    <Architecture Condition="'$(Platform)' == 'x86'">32</Architecture>
+    <Architecture Condition="'$(Platform)' == 'x64'">64</Architecture>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductName>$(Application) $(Architecture)-bit</ProductName>
+    <!-- PowerExec>$(ToolsDir)\powerexec.exe</PowerExec -->
+    <!-- Localizer>..\MsiLocalizations\bin\Release\InstallerLocalizations.exe</Localizer -->
+    <!-- Signer>$(ToolsDir)\Signing\Signer.exe</Signer>
+    <SignerInclude>*.exe;*.dll;*.ocx</SignerInclude>
+    <SignerExclude>setup.exe;REGSVR32.EXE;msvcr80.dll</SignerExclude>
+    <SignerTimestamp Condition="'$(TIMESTAMPURL)' != ''">-t $(TIMESTAMPURL) </SignerTimestamp>
+    <SignerTimeout>600000</SignerTimeout -->
+    <!-- Bootstrapper>$(BuildDir)\setup.$(Application).exe</Bootstrapper -->
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProductVersion>3.10</ProductVersion>
+    <ProjectGuid>eb9b53e9-c17b-4a05-8174-6cd9e85dce81</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>$(Application)_Setup_$(Architecture)-bit</OutputName>
+    <OutputType>Package</OutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TestA Debug|x86' ">
+    <OutputPath>bin\$(Configuration)\$(Platform)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug</DefineConstants>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressValidation>True</SuppressValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TestA Release|x86' ">
+    <OutputPath>bin\$(Configuration)\$(Platform)\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressValidation>True</SuppressValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TestA Debug|x64' ">
+    <DefineConstants>Debug;</DefineConstants>
+    <OutputPath>bin\$(Configuration)\$(Platform)\</OutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressValidation>True</SuppressValidation>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'TestA Release|x64' ">
+    <OutputPath>bin\$(Configuration)\$(Platform)\</OutputPath>
+    <SuppressPdbOutput>True</SuppressPdbOutput>
+    <SuppressValidation>True</SuppressValidation>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Product.wxs" />
+    <Compile Include="UserInterface\BrowseDialog.wxs" />
+    <Compile Include="UserInterface\CustomizeDialog.wxs" />
+    <Compile Include="UserInterface\DiskCostDialog.wxs" />
+    <Compile Include="UserInterface\ExitDialog.wxs" />
+    <Compile Include="UserInterface\InstallDirDialog.wxs" />
+    <Compile Include="UserInterface\LicenseAgreementDialog.wxs" />
+    <Compile Include="UserInterface\MaintenanceTypeDialog.wxs" />
+    <Compile Include="UserInterface\MaintenanceWelcomeDialog.wxs" />
+    <Compile Include="UserInterface\ProgressDialog.wxs" />
+    <Compile Include="UserInterface\ResumeDialog.wxs" />
+    <Compile Include="UserInterface\SetupDialogs.wxs" />
+    <Compile Include="UserInterface\SetupTypeDialog.wxs" />
+    <Compile Include="UserInterface\UserExitDialog.wxs" />
+    <Compile Include="UserInterface\VerifyReadyDialog.wxs" />
+    <Compile Include="UserInterface\WelcomeDialog.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Actions" />
+    <Folder Include="Components" />
+    <Folder Include="Directories" />
+    <Folder Include="Features" />
+    <Folder Include="MergeModules" />
+    <Folder Include="Localization" />
+    <Folder Include="UserInterface" />
+    <Folder Include="Properties" />
+    <Folder Include="Other" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Actions\Actions.wxi" />
+    <Content Include="Components\Components.wxi" />
+    <Content Include="Directories\Directories.wxi" />
+    <Content Include="Features\FeatureDesktop.wxi" />
+    <Content Include="Features\FeatureQuickLaunch.wxi" />
+    <Content Include="Features\Features.wxi" />
+    <Content Include="MergeModules\MergeModules.wxi" />
+    <Content Include="Other\BinariesIcons.wxi" />
+    <Content Include="Properties\CommonVariables.wxi" />
+    <Content Include="Properties\ProductSettings.wxi" />
+    <Content Include="Properties\CommonProperties.wxi" />
+    <Content Include="UserInterface\InstallerUI.wxi" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Localization\LocalizationENU.wxl" />
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
+  <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
+    <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
+  </Target>
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

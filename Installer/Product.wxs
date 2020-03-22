@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Nastaveni podle konfigurace instalovaneho produktu -->
+  <?include Properties\ProductSettings.wxi?>
+
+  <!-- Spolecne promenne -->
+  <?include Properties\CommonVariables.wxi?>
+
+  <!-- Hlavni informace o produktu -->
+  <!-- Pokud pro GUID zadame "*" vygeneruje se pri kazde kompilaci nove -->
+  <!-- Na vlastnosti produktu se da odkazovat take pres bind.property, napr. !(bind.property.ApplicationNameFull) -->
+  <Product Id="*" UpgradeCode="$(var.UpgradeCode)" Name="$(var.ApplicationNameFull)" Manufacturer="$(var.ManufacturerNameFull)"
+           Version="$(var.ProductVersionBuildRevision)" Language="1033" Codepage="1252">
+
+    <!-- Informace o balicku -->
+    <Package Id="*" InstallerVersion="200"  Manufacturer="$(var.ManufacturerNameFull)" Description="$(var.ApplicationNameFull) $(var.PlatformBits) Installer" Keywords="Installer, MSI, Database"
+             Comments="$(var.ApplicationNameFull) is a registered trademark of $(var.ManufacturerNameFull)"
+             Compressed="yes" Languages="1033"  SummaryCodepage="1252" InstallScope="perMachine" />
+
+    <!-- Chybova zprava informujici o tom, ze instalujeme starsi verzi, nez je aktualne nainstalovana -->
+    <MajorUpgrade DowngradeErrorMessage="A newer version of $(var.ApplicationNameFull) is already installed." />
+
+    <!-- Informace o instalacnim mediu -->
+    <MediaTemplate EmbedCab="yes" />
+
+    <!-- Definice adresarove struktury -->
+    <?include Directories\Directories.wxi?>
+    <!-- Programove features -->
+    <?include Features\Features.wxi?>
+    <!-- Programove komponenty -->
+    <?include Components\Components.wxi?>
+    <!-- Prirazeni ikon -->
+    <?include Other\BinariesIcons.wxi?>
+    <!-- Properties -->
+    <?include Properties\CommonProperties.wxi?>
+    <!-- Merge moduly pro C++RT, MFC, atd. -->
+    <?include MergeModules\MergeModules.wxi?>
+
+    <!-- Uzivatelske rozhrani instalatoru -->
+    <?include UserInterface\InstallerUI.wxi?>
+    <!-- Kod uzivatelskych akci -->
+    <?include Actions\Actions.wxi?>
+
+    <Upgrade Id="$(var.UpgradeCode)">
+      <UpgradeVersion Property="PREVIOUSFOUND" Minimum="$(var.MajorVersion).0.0.0" IncludeMinimum="yes" Maximum="$(var.MajorVersion).255.65534.0" IncludeMaximum="yes" />
+    </Upgrade>
+    <!--InstallExecuteSequence>
+      <RemoveExistingProducts After="InstallInitialize"/>
+    </InstallExecuteSequence-->
+
+    <!-- Nastavime promenne pro preprocessor linkeru !(wix.promenna) -->
+    <WixVariable Id="ProductVersion" Overridable="no" Value="$(var.ProductVersionBuild)"/>
+    <WixVariable Id="MajorVersion" Overridable="no" Value="$(var.MajorVersion)"/>
+    <WixVariable Id="MinorVersion" Overridable="no" Value="$(var.MinorVersion)"/>
+    <WixVariable Id="BuildVersion" Overridable="no" Value="$(var.BuildVersion)"/>
+
+  </Product>
+
+</Wix>

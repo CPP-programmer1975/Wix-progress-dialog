@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Definice UI pro instalaci -->
+  <UI>
+    <!-- Styl instalacnich dialogu - vlastni -->
+    <UIRef Id="Pcp_SetupUserInterface" />
+  </UI>
+
+  <!-- Timto zpusobem nahradime defaultni EULA prohlaseni nasim -->
+  <WixVariable Id="WixUILicenseRtf" Value="$(var.ApplicationCommonFiles)\License.rtf" />
+
+</Include>

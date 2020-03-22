@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Zastupce v nabidce Start -->
+  <Feature Id="QuickLaunch" AllowAdvertise="no" Level="1" Title="Shortcuts to Quick Launch">
+    <Component Id="ApplicationShortcut" Guid="20792A62-988E-4E98-982A-E193045588F2" Directory="ApplicationProgramsFolder">
+      <Shortcut Id="ApplicationStartMenuShortcut" Name="$(var.ApplicationNameFull)" Description="$(var.ApplicationName) Description" Icon="Desktop.ico" Target="[APPBINFOLDER]$(var.MainExecutableName)" WorkingDirectory="APPLICATIONROOTDIRECTORY" />
+      <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall"/>
+      <RegistryValue Root="HKCU" Key="Software\$(var.ManufacturerName)\$(var.ApplicationNameFull)" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+    </Component>
+  </Feature>
+
+</Include>

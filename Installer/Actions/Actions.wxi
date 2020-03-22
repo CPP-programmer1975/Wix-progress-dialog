@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Kod uzivatelskych akci -->
+  <!-- CustomAction Id="CheckDestinationFolders" DllEntry="CheckDestinationFolders" Return="ignore" BinaryKey="InstallationLibraryDll" Win64="no" / -->
+
+  <!-- CustomAction Id="LaunchApplication" Directory="APPBINFOLDER" Execute="immediate" Impersonate="no" Return="ignore" ExeCommand="[APPBINFOLDER]TestA_Simulation64.exe" / -->
+
+  <!-- Zobrazeni MSI logu -->
+  <CustomAction Id="ShowMsiLog" Directory="SystemFolder" ExeCommand="[SystemFolder]notepad.exe &quot;[MsiLogFileLocation]&quot;" Return="asyncNoWait" Win64="no" />
+
+</Include>

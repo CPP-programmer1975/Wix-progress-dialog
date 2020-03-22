@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Dialog pro vyber komponent -->
+      <Dialog Id="Pcp_CustomizeDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes" TrackDiskSpace="yes">
+        <!-- Text nad stromem s features -->
+        <Control Id="DlgText" Type="Text" X="22" Y="76" Width="360" Height="10" Text="!(loc.Pcp_CustomizeTypeDlgTreeDesc)" TabSkip="yes" />
+        <!-- Strom s vyberem kompoment -->
+        <Control Id="Tree" Type="SelectionTree" X="21" Y="95" Width="395" Height="213" Text="NONE" Property="_BrowseProperty" TabSkip="no" Sunken="yes" />
+        <!-- Tlacitko pro zmenu umisteni -->
+        <Control Id="ChangeFolder" Type="PushButton" X="476" Y="323" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonChange)" TabSkip="no">
+          <Condition Action="hide">Installed</Condition>
+          <Publish Event="SelectionBrowse" Value="Pcp_BrowseDialog">1</Publish>
+        </Control>
+        <!-- Control Id="Help" Type="PushButton" X="210" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonHelp)" TabSkip="no">
+        <Publish Event="SpawnDialog" Value="CustomSetupTips">1</Publish>
+        </Control -->
+        <Control Id="DiskSpace" Type="PushButton" X="281" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonSpace)" TabSkip="no">
+          <Condition Action="hide">Installed</Condition>
+          <Publish Event="SelectionBrowse" Value="Pcp_DiskCostDialog">1</Publish>
+        </Control>
+        <!-- Tlacitko zpet -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" />
+        <!-- Tlacitko dale -->
+        <Control Id="Next" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonNext)" TabSkip="no" Default="yes">
+          <Publish Property="WixUI_InstallMode" Value="Custom">1</Publish>
+        </Control>
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no"  Cancel="yes" />
+        <!-- Text k popisku umisteni -->
+        <Control Id="InstallLabel" Type="Text" X="21" Y="310" Width="360" Height="10" Text="!(loc.Pcp_CustomizeTypeDlgInstallLabel)" TabSkip="yes">
+          <Condition Action="hide">Installed</Condition>
+        </Control>
+        <!-- Umisteni -->
+        <Control Id="Location" Type="Text" X="21" Y="323" Width="291" Height="20" Text="&lt;selected feature path&gt;" TabSkip="yes">
+          <Subscribe Event="SelectionPath" Attribute="Text" />
+        </Control>
+        <!-- Group box okolo popisu feature -->
+        <Control Id="FeatureGroup" Type="GroupBox" X="423" Y="92" Width="118" Height="215" Text="!(loc.Pcp_CustomizeTypeDlgFeatureGroupText)" TabSkip="yes" Disabled="yes" />
+        <!-- Popis feature - text je dynamicky, netreba zde lokalizovat -->
+        <Control Id="ItemDescription" Type="Text" X="429" Y="105" Width="107" Height="50" Text="Multiline description of the currently selected item" TabSkip="yes">
+          <Subscribe Event="SelectionDescription" Attribute="Text" />
+        </Control>
+        <!-- Velikost feature - text je dynamicky, netreba zde lokalizovat -->
+        <Control Id="Size" Type="Text" X="429" Y="192" Width="107" Height="80" Text="Feature size" TabSkip="yes">
+          <Subscribe Event="SelectionSize" Attribute="Text" />
+        </Control>
+        <!-- Bitmapa - banner -->
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="67" Text="!(loc.InstallDirDlgBannerBitmap)" TabSkip="yes" Disabled="yes" />
+        <!-- Oddelovaci linka banneru -->
+        <Control Id="BannerLine" Type="Line" X="0" Y="67" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+        <!-- Texty v banneru -->
+        <Control Id="DlgTitle" Type="Text" X="20" Y="9" Width="438" Height="38" Text="!(loc.Pcp_CustomizeTypeDlgTitle)" TabSkip="yes" Transparent="yes" />
+        <Control Id="DlgDesc" Type="Text" X="32" Y="34" Width="438" Height="38" Text="!(loc.Pcp_CustomizeTypeDlgDescription)" TabSkip="yes" Transparent="yes" />
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

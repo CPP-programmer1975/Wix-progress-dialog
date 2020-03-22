@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WixLocalization Culture="en-us" xmlns="http://schemas.microsoft.com/wix/2006/localization">
+  <!-- Text v titulku instalacnich dialogu -->
+  <String Id="Pcp_SetupDialogMainTitle">[InstallUI_ProductNameFull] (!(wix.ProductVersion)) - Installation Wizard</String>
+  <!-- Text tlacitka Back -->
+  <String Id="Pcp_SetupDialogButtonBack">&lt; &amp;Back</String>
+  <!-- Text tlacitka Next -->
+  <String Id="Pcp_SetupDialogButtonNext">&amp;Next &gt;</String>
+  <!-- Text tlacitka Cancel -->
+  <String Id="Pcp_SetupDialogButtonCancel">Cancel</String>
+  <!-- Text tlacitka Change -->
+  <String Id="Pcp_SetupDialogButtonChange">&amp;Change...</String>
+  <!-- Text tlacitka OK -->
+  <String Id="Pcp_SetupDialogButtonOK">OK</String>
+  <!-- Text tlacitka Finish -->
+  <String Id="Pcp_SetupDialogButtonFinish">&amp;Finish</String>
+  <!-- Text tlacitka help -->
+  <String Id="Pcp_SetupDialogButtonHelp">Help</String>
+  <!-- Text tlacitka Space -->
+  <String Id="Pcp_SetupDialogButtonSpace">&amp;Space</String>
+  <!-- Text dialog Welcome line 1 -->
+  <String Id="Pcp_WelcomeDialogTextLine1Text">{&amp;TahomaBold10}Welcome to the Installation Wizard for [InstallUI_ProductNameFull]</String>
+  <!-- Text dialog Welcome line 2 -->
+  <String Id="Pcp_WelcomeDialogTextLine2Text">The Installation Wizard will install [InstallUI_ProductNameFull] on your computer. To continue, click Next.</String>
+  <!-- Text dialog Welcome copyright -->
+  <String Id="Pcp_WelcomeDialogTextCopyrightText">WARNING: This program is protected by copyright law and international treaties.</String>
+  <!-- Text dialog License agreement banner -->
+  <String Id="Pcp_LicenseAgreementDlgTitle">{&amp;MSSansBold8}License Agreement</String>
+  <!-- Text dialog License agreement description -->
+  <String Id="Pcp_LicenseAgreementDlgDescription">Please read the following license agreement carefully.</String>
+  <!-- Text dialog License agreement  tlacitko Print -->
+  <String Id="Pcp_LicenseAgreementDlgButtonPrint">&amp;Print</String>
+  <!-- Text dialog License agreement accept radiobutton No -->
+  <String Id="Pcp_LicenseAgreementDlgRadioButtonAgreeNoText">I &amp;do not accept the terms in the license agreement</String>
+  <!-- Text dialog License agreement accept radiobutton Yes -->
+  <String Id="Pcp_LicenseAgreementDlgRadioButtonAgreeYesText">I &amp;accept the terms in the license agreement</String>
+  <!-- Text dialog Install dir banner -->
+  <String Id="Pcp_InstallDirDlgTitle">{&amp;MSSansBold8}Destination Folder</String>
+  <!-- Text dialog Install dir description -->
+  <String Id="Pcp_InstallDirDlgDescription">Click Next to install to this folder, or click Change to install to a different folder.</String>
+  <!-- Text dialog Install dir App description -->
+  <String Id="Pcp_InstallDirDlgGroupBoxApp">Folder for program files</String>
+  <!-- Text dialog Install dir User description -->
+  <String Id="Pcp_InstallDirDlgGroupBoxUser">Folder for program files USER</String>
+  <!-- Text dialog Setup type banner -->
+  <String Id="Pcp_SetupTypeDlgTitle">{&amp;MSSansBold8}Setup Type</String>
+  <!-- Text dialog Setup type description -->
+  <String Id="Pcp_SetupTypeDlgDescription">Choose the setup type that best suits your needs.</String>
+  <!-- Text dialog Setup type text -->
+  <String Id="Pcp_SetupTypeDlgText">Please select a setup type.</String>
+  <!-- Text dialog Setup type radiobutton Complete -->
+  <String Id="Pcp_SetupTypeDlgRadioButtonCompleteText">{&amp;MSSansBold8}&amp;Complete</String>
+  <!-- Text dialog Setup type radiobutton Custom -->
+  <String Id="Pcp_SetupTypeDlgRadioButtonCustomText">{&amp;MSSansBold8}Cu&amp;stom</String>
+  <!-- Text dialog Setup type Complete text -->
+  <String Id="Pcp_SetupTypeDlgCompleteText">All program features will be installed. (Requires the most disk space.)</String>
+  <!-- Text dialog Setup type Custom text -->
+  <String Id="Pcp_SetupTypeDlgCustomText">Choose which program features you want installed and where they will be installed. Recommended for advanced users.</String>
+  <!-- Text dialog Customize type banner -->
+  <String Id="Pcp_CustomizeTypeDlgTitle">{&amp;MSSansBold8}Custom Setup</String>
+  <!-- Text dialog Customize type description -->
+  <String Id="Pcp_CustomizeTypeDlgDescription">Select the program features you want installed.</String>
+  <!-- Text dialog Customize type tree desc text -->
+  <String Id="Pcp_CustomizeTypeDlgTreeDesc">Click on an icon in the list below to change how a feature is installed.</String>
+  <!-- Text dialog Customize type Install Label text -->
+  <String Id="Pcp_CustomizeTypeDlgInstallLabel">Install to:</String>
+  <!-- Text dialog Customize type feature group text -->
+  <String Id="Pcp_CustomizeTypeDlgFeatureGroupText">Feature Description</String>
+  <!-- Text dialog VerifyReady type banner Install -->
+  <String Id="Pcp_VerifyReadyTypeDlgTitleInstall">{&amp;MSSansBold8}Ready to Install the Program</String>
+  <!-- Text dialog VerifyReady type banner Modify -->
+  <String Id="Pcp_VerifyReadyTypeDlgTitleModify">{&amp;MSSansBold8}Ready to Modify the Program</String>
+  <!-- Text dialog VerifyReady type banner Repair -->
+  <String Id="Pcp_VerifyReadyTypeDlgTitleRepair">{&amp;MSSansBold8}Ready to Repair the Program</String>
+  <!-- Text dialog VerifyReady type description -->
+  <String Id="Pcp_VerifyReadyTypeDlgDescription">The wizard is ready to begin installation.</String>
+  <!-- Text dialog VerifyReady type tlacitko Install -->
+  <String Id="Pcp_VerifyReadyTypeDlgButtonInstall">&amp;Install</String>
+  <!-- Text dialog VerifyReady type tlacitko Change -->
+  <String Id="Pcp_VerifyReadyTypeDlgButtonChange">Change</String>
+  <!-- Text dialog VerifyReady type tlacitko Repair -->
+  <String Id="Pcp_VerifyReadyTypeDlgButtonRepair">Repair</String>
+  <!-- Text dialog VerifyReady type tlacitko Remove -->
+  <String Id="Pcp_VerifyReadyTypeDlgButtonRemove">Remove</String>
+  <!-- Text dialog VerifyReady type tlacitko Update -->
+  <String Id="Pcp_VerifyReadyTypeDlgButtonUpdate">Update</String>
+  <!-- Text dialog VerifyReady text Install -->
+  <String Id="Pcp_VerifyReadyTypeDlgTextInstall">Click Install to begin the installation.</String>
+  <!-- Text dialog VerifyReady text Modify -->
+  <String Id="Pcp_VerifyReadyTypeDlgTextModify">Click Modify to begin the installation.</String>
+  <!-- Text dialog VerifyReady text prompt -->
+  <String Id="Pcp_VerifyReadyTypeDlgTextPrompt">If you want to review or change any of your installation settings, click Back. Click Cancel to exit the wizard.</String>
+  <!-- Text dialog Exit text banner -->
+  <String Id="Pcp_ExitTypeDlgTitle">{&amp;TahomaBold10}Installation Wizard Completed</String>
+  <!-- Text dialog Exit text prompt -->
+  <String Id="Pcp_ExitTypeDlgReport">The Installation Wizard has successfully installed [InstallUI_ProductNameFull]. Click Finish to exit the wizard.</String>
+  <!-- Text dialog Exit text thank -->
+  <String Id="Pcp_ExitTypeDlgThank">Thank you for choosing [InstallUI_ManufacturerName] software.</String>
+  <!-- Text dialog Exit text URL info -->
+  <String Id="Pcp_ExitTypeDlgUrlInfo">For further information contact us or visit [InstallUI_ManufacturerURL].</String>
+  <!-- Text dialog Exit launch app text -->
+  <String Id="Pcp_ExitTypeDlgLaunchApp">Launch [InstallUI_ProductName] (Required)</String>
+  <!-- Text dialog UserExit text prompt -->
+  <String Id="Pcp_UserExitTypeDlgTitle">{&amp;TahomaBold10}Installation Wizard Completed</String>
+  <!-- Text dialog UserExit text prompt -->
+  <String Id="Pcp_UserExitTypeDlgReport">The wizard was interrupted before [InstallUI_ProductNameFull] could be completely installed.</String>
+  <!-- Text dialog UserExit text Finish1 -->
+  <String Id="Pcp_UserExitTypeDlgFinish1">Your system has not been modified. To install this program at a later time, please run the installation again.</String>
+  <!-- Text dialog UserExit text Finish2 -->
+  <String Id="Pcp_UserExitTypeDlgFinish2">Click Finish to exit the wizard.</String>
+  <!-- Text dialog UserExit text RestCont1 -->
+  <String Id="Pcp_UserExitTypeDlgRestCont1">You can either keep any existing installed elements on your system to continue this installation at a later time or you can restore your system to its original state prior to the installation.</String>
+  <!-- Text dialog UserExit text RestCont2 -->
+  <String Id="Pcp_UserExitTypeDlgRestCont2">Click Restore or Continue Later to exit the wizard.</String>
+  <!-- Text checkboxu Show MSI installer log -->
+  <String Id="Pcp_ExitShowMsiInstallerLog">Show the Windows Installer log</String>
+  <!-- Text dialog Browse type text banner -->
+  <String Id="Pcp_BrowseTypeDlgTitle">{&amp;MSSansBold8}Change Current Destination Folder</String>
+  <!-- Text dialog Browse type prompt -->
+  <String Id="Pcp_BrowseTypeDlgDescription">Browse to the destination folder.</String>
+  <!-- Text dialog Browse type combo label -->
+  <String Id="Pcp_BrowseTypeDlgComboLabel">&amp;Look in:</String>
+  <!-- Text dialog Browse type button Up one level -->
+  <String Id="Pcp_BrowseTypeDlgButtonUp">Up One Level|</String>
+  <!-- Text dialog Browse type button Up one level -->
+  <String Id="Pcp_BrowseTypeDlgButtonNewFolder">Create New Folder|</String>
+  <!-- Text dialog Browse type folder name -->
+  <String Id="Pcp_BrowseTypeDlgFolderName">&amp;Folder name:</String>
+  <!-- Text dialog Disk cost banner -->
+  <String Id="Pcp_DiskCostDlgTitle">{&amp;MSSansBold8}Disk Space Requirements</String>
+  <!-- Text dialog Disk cost description -->
+  <String Id="Pcp_DiskCostDlgDescription">The disk space required for the installation of the selected features.</String>
+  <!-- Text dialog Disk cost dlg text -->
+  <String Id="Pcp_DiskCostDlgText">The highlighted volumes do not have enough disk space available for the currently selected features. You can remove files from the highlighted volumes, choose to install fewer features onto local drives, or select different destination drives.</String>
+
+</WixLocalization>

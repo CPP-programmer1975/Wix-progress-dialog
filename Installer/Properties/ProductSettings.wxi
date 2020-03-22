@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Definice specifickych nastaveni produktu podle konfigurace -->
+  <?ifndef ProductSettings?>
+    <!-- Nastaveni produktu podle konfigurace -->
+    <?if "$(var.Configuration)" = "TestA Debug" or "$(var.Configuration)" = "TestA Release"?>
+      <!-- UpgradeCode je jedinecne GUID produktu, musi zustat nemenne pro TestA Simulation-->
+      <?define UpgradeCode="17E77D95-EE26-408F-A979-D34812804934"?>
+      <!-- Nazev aplikace pro exe -->
+      <?define ApplicationName="TestA_Simulation"?>
+      <!-- Zkraceny nazev aplikace pro pouziti v UI instalatoru -->
+      <?define ApplicationNameShort="TestA"?>
+      <!-- Plny nazev aplikace pro pouziti v UI instalatoru -->
+      <?define ApplicationNameFull="TestA Simulation 2.x"?>
+      <!-- Kod vyrobce -->
+      <?define ManufacturerCode="DL"?>
+    <?elseif "$(var.Configuration)" = "TestB Debug" or "$(var.Configuration)" = "TestB Release"?>
+      <!-- UpgradeCode je jedinecne GUID produktu, musi zustat nemenne pro TestB -->
+      <?define UpgradeCode="EB400E62-312D-47C8-9B3A-7A326C79D5AF"?>
+      <!-- Nazev aplikace pro exe -->
+      <?define ApplicationName="TestB"?>
+      <!-- Zkraceny nazev aplikace pro pouziti v UI instalatoru -->
+      <?define ApplicationNameShort="TestB"?>
+      <!-- Plny nazev aplikace pro pouziti v UI instalatoru -->
+      <?define ApplicationNameFull="TestB 4.x"?>
+      <!-- Kod vyrobce -->
+      <?define ManufacturerCode="PCP"?>
+    <?endif?>
+  <?endif?>
+
+  <!-- Informace o vyrobci -->
+  <?if "$(var.ManufacturerCode)" = "PCP"?>
+    <!-- Zkraceny nazev vyrobce -->
+    <?define ManufacturerName="TestB-Manu"?>
+    <!-- Plny nazev vyrobce pro pouziti v UI instalatoru -->
+    <?define ManufacturerNameFull="TestB-Manu"?>
+    <!-- Zkracene URL hlavni webove stranky vyrobce -->
+    <?define ManufacturerURL="www.TestB-Manu.com"?>
+    <!-- URL hlavni webove stranky vyrobce -->
+    <?define ManufacturerFullURL="http://www.TestB-Manu.com"?>
+  <?elseif "$(var.ManufacturerCode)" = "DL"?>
+    <!-- Zkraceny nazev vyrobce -->
+    <?define ManufacturerName="TestA-Manu"?>
+    <!-- Plny nazev vyrobce pro pouziti v UI instalatoru -->
+    <?define ManufacturerNameFull="TestA-Manu Software"?>
+    <!-- Zkracene URL hlavni webove stranky vyrobce -->
+    <?define ManufacturerURL="www.TestA-Manu.com"?>
+    <!-- URL hlavni webove stranky vyrobce -->
+    <?define ManufacturerFullURL="http://www.TestA-Manu.com"?>
+  <?endif?>
+
+</Include>

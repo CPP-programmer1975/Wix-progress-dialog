@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Dialog s licencim ujednanim (EULA) -->
+      <Dialog Id="Pcp_LicenseAgreementDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko zpet - pokud chci, aby bylo focusovane, musi byt jako prvni v poradi s TabSkip="no" -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" />
+        <!-- Tlacitko dale -->
+        <Control Id="Next" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonNext)" TabSkip="no">
+          <Publish Event="SpawnWaitDialog" Value="WaitForCostingDlg">!(wix.WixUICostingPopupOptOut) OR CostingComplete = 1</Publish>
+          <Condition Action="disable"><![CDATA[AgreeToLicense <> "yes"]]></Condition>
+          <Condition Action="enable">AgreeToLicense = "yes"</Condition>
+          <Condition Action="hide">STANDARD_INSTALL</Condition>
+        </Control>
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no" Cancel="yes" />
+        <!-- Bitmapa - banner -->
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="67" Text="!(loc.LicenseAgreementDlgBannerBitmap)" TabSkip="yes" Disabled="yes" />
+        <!-- Oddelovaci linka banneru -->
+        <Control Id="BannerLine" Type="Line" X="0" Y="67" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+        <!-- Texty v banneru -->
+        <Control Id="Title" Type="Text" X="20" Y="9" Width="438" Height="38" Transparent="yes" NoPrefix="yes" Text="!(loc.Pcp_LicenseAgreementDlgTitle)" />
+        <Control Id="Description" Type="Text" X="32" Y="34" Width="438" Height="38" Transparent="yes" NoPrefix="yes" Text="!(loc.Pcp_LicenseAgreementDlgDescription)" />
+        <!-- Text licencnich podminek -->
+        <Control Id="LicenseText" Type="ScrollableText" X="21" Y="80" Width="520" Height="225" TabSkip="yes" Sunken="yes">
+          <Text SourceFile="!(wix.WixUILicenseRtf)" />
+        </Control>
+        <!-- Tlacitko Print -->
+        <Control Id="PrintButton" Type="PushButton" X="476" Y="308" Width="65" Height="17" Text="!(loc.Pcp_LicenseAgreementDlgButtonPrint)" TabSkip="no">
+          <Publish Event="DoAction" Value="WixUIPrintEula">1</Publish>
+        </Control>
+        <!-- Radiobuttony prijeti/neprijeti licencnich podminek -->
+        <Control Id="Agree" Type="RadioButtonGroup" X="21" Y="310" Width="446" Height="40" Property="AgreeToLicense" TabSkip="no" />
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Uvitaci dialog -->
+      <Dialog Id="Pcp_WelcomeDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko zpet -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" Disabled="yes" />
+        <!-- Tlacitko dale -->
+        <Control Id="Next" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonNext)" TabSkip="no" Default="yes">
+          <Publish Property="WixUI_InstallMode" Value="Update">Installed AND PATCH</Publish>
+        </Control>
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no" Cancel="yes" />
+        <!-- Uvodni text dialogu -->
+        <Control Id="Title" Type="Text" X="279" Y="33" Width="225" Height="45" Text="!(loc.Pcp_WelcomeDialogTextLine1Text)" Transparent="yes" NoPrefix="yes" />
+        <!-- Podkladova bitmapa -->
+        <Control Id="Bitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="354" Text="!(loc.WelcomeDlgBitmap)" TabSkip="no" Disabled="yes" />
+        <!-- Vysvetlujici text dialogu -->
+        <Control Id="Description" Type="Text" X="279" Y="80" Width="228" Height="45" Text="!(loc.Pcp_WelcomeDialogTextLine2Text)" TabSkip="yes" Transparent="yes" NoPrefix="yes" >
+          <Condition Action="show">NOT Installed OR NOT PATCH</Condition>
+          <Condition Action="hide">Installed AND PATCH</Condition>
+        </Control>
+        <Control Id="Copyright" Type="Text" X="279" Y="244" Width="228" Height="160" Text="!(loc.Pcp_WelcomeDialogTextCopyrightText)" TabSkip="yes" Transparent="yes">
+          <Condition Action="show">SHOWCOPYRIGHT="Yes"</Condition>
+          <Condition Action="hide">SHOWCOPYRIGHT="No"</Condition>
+        </Control>
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+
+      <!-- Definice sekvence dialogu -->
+      <InstallUISequence>
+        <Show Dialog="Pcp_WelcomeDialog" Before="Pcp_ProgressDialog" Overridable="no">NOT Installed OR PATCH</Show>
+      </InstallUISequence>
+    </UI>
+  </Fragment>
+</Wix>

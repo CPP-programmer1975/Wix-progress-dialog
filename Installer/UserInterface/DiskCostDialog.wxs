@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Dialog pro informace o mistu na disku -->
+      <Dialog Id="Pcp_DiskCostDialog"  Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko OK -->
+        <Control Id="OK" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonOK)" TabSkip="no" Default="yes" Cancel="yes">
+          <Publish Event="EndDialog" Value="Return">1</Publish>
+        </Control>
+        <!-- Bitmapa - banner -->
+        <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="67" Text="!(loc.DiskCostDlgBannerBitmap)" TabSkip="yes" Disabled="yes" />
+        <!-- Oddelovaci linka banneru -->
+        <Control Id="BannerLine" Type="Line" X="0" Y="67" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+        <!-- Text v banneru -->
+        <Control Id="DlgTitle" Type="Text" X="20" Y="9" Width="438" Height="38" Text="!(loc.Pcp_DiskCostDlgTitle)" TabSkip="yes" Transparent="yes" />
+        <Control Id="DlgDesc" Type="Text" X="32" Y="34" Width="438" Height="38" Text="!(loc.Pcp_DiskCostDlgDescription)" TabSkip="yes" Transparent="yes" />
+        <!-- Texty uvnitr dialogu -->
+        <Control Id="DlgText" Type="Text" X="23" Y="305" Width="358" Height="41" Text="!(loc.Pcp_DiskCostDlgText)" TabSkip="yes" />
+        <!-- Seznam disku -->
+        <Control Id="VolumeList" Type="VolumeCostList" X="21" Y="80" Width="520" Height="220" Text="{120}{70}{70}{70}{70}" TabSkip="yes" Sunken="yes" Fixed="yes" Remote="yes" />
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

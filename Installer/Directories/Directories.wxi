@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Adresarova struktura pro instalaci souboru aplikace -->
+  <Directory Id="TARGETDIR" Name="SourceDir">
+
+    <!-- Preddefinovana promenna pro adresar Program Files podle platformy -->
+    <Directory Id="ProgramFiles$(var.BitSuffix)Folder" SourceName="Program Files">
+      <!-- Definice adresare pro spolecnost -->
+      <Directory Id="MANUFACTURERFOLDER" Name="$(var.ManufacturerName)">
+        <!-- Definice hlavniho adresare produktu -->
+        <Directory Id="APPLICATIONFOLDER" Name="$(var.ApplicationNameFull)">
+          <!-- Vnoreny adresar Bin v produktovem adresari -->
+          <Directory Id="APPBINFOLDER" Name="Bin" />
+          <!-- Vnoreny adresar OF v produktovem adresari -->
+          <Directory Id="APPOFFOLDER" Name="OF" />
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <!-- Adresarova struktura pro Common documents -->
+    <Directory Id="WIX_DIR_COMMON_DOCUMENTS" SourceName="CommonDocuments">
+      <!-- Preddefinovana promenna pro adresar Program Files podle platformy -->
+      <Directory Id="DOCSMANUFACTURERFOLDER" Name="$(var.ManufacturerName)">
+        <!-- Definice adresare pro spolecnost -->
+        <Directory Id="DOCSAPPLICATIONFOLDER" Name="$(var.ApplicationNameFull)" />
+      </Directory>
+    </Directory>
+
+    <!-- Shortcut na destopu -->
+    <Directory Id="DesktopFolder" Name="Desktop" />
+
+    <!-- Shortcut v programs -->
+    <Directory Id="ProgramMenuFolder">
+      <!-- Vytvoreni adresare v menu Start -->
+      <Directory Id="ApplicationProgramsFolder" Name="$(var.ApplicationNameFull)" />
+    </Directory>
+
+    <Directory Id="SystemFolder" SourceName="System32" />
+
+  </Directory>
+
+</Include>

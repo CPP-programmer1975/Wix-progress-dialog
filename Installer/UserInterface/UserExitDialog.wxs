@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment>
+    <UI>
+      <!-- Ukoncovaci dialog po zruseni instalace -->
+      <Dialog Id="Pcp_UserExitDialog" Width="562" Height="386" Title="!(loc.Pcp_SetupDialogMainTitle)" NoMinimize="yes">
+        <!-- Tlacitko dokoncit -->
+        <Control Id="Finish" Type="PushButton" X="418" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonFinish)" TabSkip="no" Default="yes" Cancel="yes">
+          <Condition Action="default">NOT UpdateStarted</Condition>
+          <Publish Event="EndDialog" Value="Exit">1</Publish>
+          <Publish Event="DoAction" Value="ShowMsiLog">MsiLogFileLocation And (SHOW_MSI_LOG="1")</Publish>
+        </Control>
+        <!-- Tlacitko zrusit -->
+        <Control Id="Cancel" Type="PushButton" X="489" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonCancel)" TabSkip="no" Disabled="yes">
+          <Condition Action="disable">NOT UpdateStarted</Condition>
+          <Condition Action="enable">UpdateStarted</Condition>
+          <Publish Property="Suspend" Value="1">1</Publish>
+          <Publish Event="EndDialog" Value="Exit">1</Publish>
+        </Control>
+        <!-- Tlacitko zpet -->
+        <Control Id="Back" Type="PushButton" X="352" Y="363" Width="66" Height="17" Text="!(loc.Pcp_SetupDialogButtonBack)" TabSkip="no" Disabled="yes">
+          <Condition Action="default">UpdateStarted</Condition>
+          <Condition Action="disable">NOT UpdateStarted</Condition>
+          <Condition Action="enable">UpdateStarted</Condition>
+          <Publish Property="Suspend">1</Publish>
+          <Publish Event="EndDialog" Value="Exit">1</Publish>
+        </Control>
+        <!-- Podkladova bitmapa -->
+        <Control Id="Bitmap" Type="Bitmap" X="0" Y="0" Width="562" Height="354" Text="!(loc.UserExitBitmap)" TabSkip="no" Disabled="yes" />
+        <!-- Zprava o ukonceni instalatoru -->
+        <Control Id="TextLine1" Type="Text" X="279" Y="33" Width="225" Height="45" Text="!(loc.Pcp_UserExitTypeDlgTitle)" TabSkip="yes" Transparent="yes" />
+        <!-- Zprava s stavu instalace -->
+        <Control Id="TextLine2" Type="Text" X="279" Y="80" Width="228" Height="25" Text="!(loc.Pcp_UserExitTypeDlgReport)" TabSkip="yes" Transparent="yes" NoPrefix="yes" />
+        <!-- Texty v hlavnim poli -->
+        <Control Id="FinishText1" Type="Text" X="279" Y="105" Width="228" Height="50" Text="!(loc.Pcp_UserExitTypeDlgFinish1)" TabSkip="yes" Transparent="yes">
+          <Condition Action="show">NOT UpdateStarted</Condition>
+          <Condition Action="hide">UpdateStarted</Condition>
+        </Control>
+        <Control Id="FinishText2" Type="Text" X="279" Y="235" Width="228" Height="25" Text="!(loc.Pcp_UserExitTypeDlgFinish2)" TabSkip="yes" Transparent="yes">
+          <Condition Action="show">NOT UpdateStarted</Condition>
+          <Condition Action="hide">UpdateStarted</Condition>
+        </Control>
+        <Control Id="RestContText1" Type="Text" X="279" Y="105" Width="228" Height="50" Text="!(loc.Pcp_UserExitTypeDlgRestCont1)" TabSkip="yes" Transparent="yes">
+          <Condition Action="show">UpdateStarted</Condition>
+          <Condition Action="hide">NOT UpdateStarted</Condition>
+        </Control>
+        <Control Id="RestContText2" Type="Text" X="279" Y="235" Width="228" Height="25" Text="!(loc.Pcp_UserExitTypeDlgRestCont2)" TabSkip="yes" Transparent="yes">
+          <Condition Action="show">UpdateStarted</Condition>
+          <Condition Action="hide">NOT UpdateStarted</Condition>
+        </Control>
+        <!-- Check box Show MSI install log -->
+        <!-- Control Id="CheckShowMsiLog" Type="CheckBox" X="279" Y="218" Width="10" Height="9" CheckBoxValue="1" CheckBoxPropertyRef="SHOW_MSI_LOG" TabSkip="no" Hidden="yes">
+          <Condition Action="show">MsiLogFileLocation</Condition>
+        </Control>
+        <Control Id="ShowMsiLogText" Type="Text" X="292" Y="218" Width="198" Height="10" Text="!(loc.Pcp_ExitShowMsiInstallerLog)" TabSkip="yes" Hidden="yes" Transparent="yes">
+          <Condition Action="show">MsiLogFileLocation</Condition>
+        </Control -->
+        <!-- Oddelovaci linka -->
+        <Control Id="BottomLine" Type="Line" X="0" Y="354" Width="562" Height="0" TabSkip="yes" Disabled="yes" />
+      </Dialog>
+    </UI>
+  </Fragment>
+</Wix>

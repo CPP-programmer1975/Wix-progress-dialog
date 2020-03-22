@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Jmeno produktu -->
+  <Property Id="InstallUI_ProductName" Value="$(var.ApplicationName)" />
+  <!-- Jmeno vyrobce -->
+  <Property Id="InstallUI_ManufacturerName" Value="$(var.ManufacturerName)" />
+  <!-- URL vyrobce -->
+  <Property Id="InstallUI_ManufacturerURL" Value="$(var.ManufacturerURL)" />
+  <!-- Jmeno produktu vcetne vyrobce a verze -->
+  <Property Id="InstallUI_ProductNameFull" Value="$(var.ProductFullName)" />
+
+  <!-- Vlastnosti, ktere se zobrazuji v "Programs and features" ve Windows -->
+  <Property Id="ARPURLINFOABOUT" Value="$(var.ManufacturerFullURL)" />
+  <Property Id="ARPHELPLINK" Value="$(var.ManufacturerFullURL)" />
+  <Property Id="ARPURLUPDATEINFO" Value="$(var.ManufacturerFullURL)" />
+
+  <!-- Defaultni hodnota cesty k rootu instalace -->
+  <Property Id="WIXUI_INSTALLDIR" Value="APPLICATIONFOLDER" />
+  <!-- Defaultni hodnota cesty ke common documents adresari -->
+  <Property Id="WIXUI_USERDATADIR" Value="DOCSAPPLICATIONFOLDER" />
+
+  <PropertyRef Id="WIX_DIR_COMMON_DOCUMENTS" />
+
+  <!-- Souhlas s licencnim ujednanim -->
+  <Property Id="AgreeToLicense" Value="no" />
+  <!-- Rezim instalace Complete/Custom -->
+  <Property Id="WixUI_InstallMode" Value="Complete" />
+
+  <!-- Tato vlastnost udava, jak se ma aplikace instalovat, zda per machine nebo per user -->
+  <Property Id="WixAppFolder" Value="WixPerMachineFolder" />
+  <!-- Tato vlastnost zabrani zobrazeni dialogu pro vyber typu instalace, instaluje per machine -->
+  <WixVariable Id="WixUISupportPerUser" Value="0" />
+
+  <!-- Spustit aplikaci po dokonceni instalace -->
+  <Property Id="LaunchAppOnFinish" Value="1" />
+  <!-- Custom action "Spustit aplikaci po dokonceni instalace" -->
+  <Property Id="WixShellExecTarget" Value="$(var.MainExecutableName)" />
+
+  <!-- Zda se ma zobrazit MSI log -->
+  <Property Id="SHOW_MSI_LOG" Secure="yes" />
+
+</Include>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Include xmlns="http://schemas.microsoft.com/wix/2006/wi">
+
+  <!-- Feature - Hlavni programove komponenty -->
+  <!-- Title je nazev komponenty ve strome dialogu pro vyber instalovanych komponent -->
+  <Feature Id="Application" Title="Program" Level="1" Absent="disallow">
+    <!-- Instalovane komponenty aplikace -->
+    <ComponentGroupRef Id="ProductComponents" />
+  </Feature>
+
+  <!-- Feature - Zastupci -->
+  <Feature Id="ProductShortcuts" Title="Shortcuts" Level="1" Absent="allow" AllowAdvertise="no">
+    <!-- Shortcut na destopu -->
+    <?include FeatureDesktop.wxi?>
+    <!-- Shortcut v programs -->
+    <?include FeatureQuickLaunch.wxi?>
+  </Feature>
+
+</Include>
